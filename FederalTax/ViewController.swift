@@ -16,6 +16,13 @@ class ViewController: UIViewController {
     @IBOutlet weak var displayedTaxOwing: UILabel!
     @IBOutlet weak var displayedTaxRatePercentage: UILabel!
    
+    //declaring variables for switch statement
+    var tax:Double = 0.0
+    var tax2:Double = 0.0
+    var tax3:Double = 0.0
+    var tax4:Double = 0.0
+    var tax5:Double = 0.0
+    
     //MARK: Initializers
        
        
@@ -28,7 +35,7 @@ class ViewController: UIViewController {
     @IBAction func calculateTaxOwing(_ sender: Any) {
       
         //retrieve name from view and protect against bad input
-        guard let name = submittedName.text else{
+        guard let name = submittedName.text else {
             displayedTaxOwing.text = "Please enter a name."
             return
         }
@@ -45,42 +52,48 @@ class ViewController: UIViewController {
             return
         }
         
-        //Actual calculations of tax
-        var tax:Double
+       
+         //Actual calculations of tax
         switch grossIncome {
         case 210372...:
-            tax = (grossIncome - 210371) * 0.33
+            tax5 = (grossIncome - 210371) * 0.33
             fallthrough
         case 147668...210371:
             if grossIncome > 210372{
-                tax = 62704 * 0.29
+                tax4 = 62704 * 0.29
             } else {
-                tax = (grossIncome - 147667) * 0.29
+                tax4 = (grossIncome - 147667) * 0.29
             }
             fallthrough
         case 95260...147667:
             if grossIncome > 147667{
-                tax = 52408 * 0.26
+                tax3 = 52408 * 0.26
             } else {
-                tax = (grossIncome - 95259) * 0.26
+                tax3 = (grossIncome - 95259) * 0.26
             }
             fallthrough
         case 47631...95259:
             if grossIncome > 95259{
-                tax = 47629 * 0.205
+                tax2 = 47629 * 0.205
             } else {
-            tax = (grossIncome - 47630) * 0.205
+                tax2 = (grossIncome - 47630) * 0.205
             }
             fallthrough
         case 0...47630:
             if grossIncome > 47630{
                 tax = 47630 * 0.15
             } else {
-            tax = grossIncome * 0.15
+                tax = grossIncome * 0.15
             }
         default:
             print("this shouldn't happen")
         }
+        //addition of results
+        let totalTax = tax+tax2+tax3+tax4+tax5
+        
+        //for testing purposes print totalTax and name
+        print(totalTax)
+        print(name)
     }
 }
 
