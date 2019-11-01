@@ -91,9 +91,17 @@ class ViewController: UIViewController {
         //addition of results
         let totalTax = tax+tax2+tax3+tax4+tax5
         
-        //for testing purposes print totalTax and name
-        print(totalTax)
+        //for testing purposes print name and totalTax
         print(name)
+        print(totalTax)
+        
+        //format tax to end at 2 decimal places
+        let formattedTax = String(format: "$%.2f", totalTax)
+       
+        //send results to view
+        displayedTaxOwing.text = "\(name) your federal tax owing is \(formattedTax)"
+        
+
     }
 }
 
