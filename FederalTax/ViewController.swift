@@ -29,8 +29,8 @@ class ViewController: UIViewController {
     @IBAction func calculateTaxOwing(_ sender: Any) {
       
         //retrieve name from view and protect against bad input
-        let nameAsString = submittedName.text
-        guard let name = nameAsString  else {
+        let name = submittedName.text
+        guard name != ""  else {
             displayedTaxOwing.text = "Please enter a name."
             return
         }
@@ -86,7 +86,7 @@ class ViewController: UIViewController {
                 tax = grossIncome * 0.15
             }
         default:
-            print("this shouldn't happen")
+            print("")
         }
         //addition of results
         let totalTax = tax+tax2+tax3+tax4+tax5
@@ -95,7 +95,7 @@ class ViewController: UIViewController {
         let taxRate = totalTax / incomeAsDouble! * 100
         
         //for testing purposes print name, taxRate and totalTax
-        print(name)
+        print(name!)
         print(taxRate)
         print(totalTax)
         
@@ -106,7 +106,7 @@ class ViewController: UIViewController {
         let formattedTaxRate = String(format: "%.1f", taxRate)
         
         //send results to view
-        displayedTaxOwing.text = "\(name) your federal tax owing is \(formattedTax)"
+        displayedTaxOwing.text = "\(String(name!)) your federal tax owing is \(formattedTax)"
         displayedTaxRatePercentage.text = "Effective tax rate is: \(formattedTaxRate)%"
         
     }
