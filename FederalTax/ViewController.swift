@@ -9,17 +9,17 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
     //MARK: Properties
     @IBOutlet weak var submittedName: UITextField!
     @IBOutlet weak var submittedIncome: UITextField!
     @IBOutlet weak var displayedTaxOwing: UILabel!
     @IBOutlet weak var displayedTaxRatePercentage: UILabel!
-   
+    
     
     //MARK: Initializers
-       
-       
+    
+    
     //MARK: Methods (functions) - behaviours
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,14 +27,14 @@ class ViewController: UIViewController {
     }
     //will be used to calculate tax
     @IBAction func calculateTaxOwing(_ sender: Any) {
-      
+        
         //retrieve name from view and protect against bad input
         let name = submittedName.text
         guard name != ""  else {
             displayedTaxOwing.text = "Please enter a name."
             return
         }
-       
+        
         //turn submitted income into string
         let incomeAsString = submittedIncome.text!
         
@@ -47,25 +47,25 @@ class ViewController: UIViewController {
             displayedTaxRatePercentage.text = ""
             return
         }
-       
+        
         //guard against negative numbers in income text field
         guard grossIncome > 0 else {
             displayedTaxOwing.text = "Can't pay tax on negative income!"
             displayedTaxRatePercentage.text = ""
             return
         }
-       
+        
         //declaring variables for switch statement
         var tax:Double = 0.0
         var tax2:Double = 0.0
         var tax3:Double = 0.0
         var tax4:Double = 0.0
         var tax5:Double = 0.0
-       
-         //Actual calculations of tax
+        
+        //Actual calculations of tax
         switch grossIncome {
         case 210372...:
-                tax5 = (grossIncome - 210371) * 0.33
+            tax5 = (grossIncome - 210371) * 0.33
             fallthrough
         case 147668...210371:
             if grossIncome > 210372{
@@ -100,7 +100,7 @@ class ViewController: UIViewController {
         
         //addition of results to find total tax
         let totalTax = tax+tax2+tax3+tax4+tax5
-       
+        
         // find tax rate percent
         let taxRate = totalTax / incomeAsDouble! * 100
         
@@ -111,7 +111,7 @@ class ViewController: UIViewController {
         
         //format tax to end at 2 decimal places
         let formattedTax = String(format: "$%.2f", totalTax)
-       
+        
         //format taxRate to end at 1 decimal place
         let formattedTaxRate = String(format: "%.1f", taxRate)
         
