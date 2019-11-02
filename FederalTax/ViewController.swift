@@ -35,15 +35,21 @@ class ViewController: UIViewController {
             return
         }
        
-        //turn income into string
+        //turn submitted income into string
         let incomeAsString = submittedIncome.text!
         
         //turn string into double value
         let incomeAsDouble = Double(incomeAsString)
         
         //guard against bad input in income text field
-        guard let grossIncome = incomeAsDouble else{
+        guard let grossIncome = incomeAsDouble else {
             displayedTaxOwing.text = "Please enter your gross income in dollars"
+            displayedTaxRatePercentage.text = ""
+            return
+        }
+        guard grossIncome > 0 else {
+            displayedTaxOwing.text = "Can't pay tax on negative income!"
+            displayedTaxRatePercentage.text = ""
             return
         }
         //declaring variables for switch statement
