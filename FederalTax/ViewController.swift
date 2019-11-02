@@ -41,17 +41,20 @@ class ViewController: UIViewController {
         //turn string into double value
         let incomeAsDouble = Double(incomeAsString)
         
-        //guard against bad input in income text field
+        //guard against words in income text field
         guard let grossIncome = incomeAsDouble else {
             displayedTaxOwing.text = "Please enter your gross income in dollars"
             displayedTaxRatePercentage.text = ""
             return
         }
+       
+        //guard against negative numbers in income text field
         guard grossIncome > 0 else {
             displayedTaxOwing.text = "Can't pay tax on negative income!"
             displayedTaxRatePercentage.text = ""
             return
         }
+       
         //declaring variables for switch statement
         var tax:Double = 0.0
         var tax2:Double = 0.0
@@ -94,7 +97,8 @@ class ViewController: UIViewController {
         default:
             print("")
         }
-        //addition of results
+        
+        //addition of results to find total tax
         let totalTax = tax+tax2+tax3+tax4+tax5
        
         // find tax rate percent
